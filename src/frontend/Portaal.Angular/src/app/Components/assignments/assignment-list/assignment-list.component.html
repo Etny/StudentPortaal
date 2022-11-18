@@ -1,0 +1,3 @@
+<div *ngIf="assignments$ | async as assignments">
+    <app-assignment-card *ngFor="let assignment of assignments" [assignment]="assignment"></app-assignment-card>
+</div>
