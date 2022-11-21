@@ -2,10 +2,10 @@ import { Ratings } from "./ratings";
 import { Tag } from "./tag";
 
 export class Assignment {
-    id: number = -1;
+    id?: number;
     title: string = "title";
     description: string = "description";
-    dateCreated: Date = new Date("0000-12-31");
+    dateCreated?: Date;
     createById: number = -1;
     // attachments: Attachment[] = [];
     tags: Tag[] = [];
