@@ -7,5 +7,6 @@ namespace PortaalBackend.Domain.Models
         public int Id { get; set; }
         public double Rated { get; set; }
         public int RatedById { get; set; }
+        public int AssignmentId { get; set; }
     }
 }
