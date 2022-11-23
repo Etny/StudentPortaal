@@ -1,5 +1,6 @@
 import { Ratings } from "./ratings";
 import { Tag } from "./tag";
+import { Comment } from "./comment";
 
 export class Assignment {
     id?: number;

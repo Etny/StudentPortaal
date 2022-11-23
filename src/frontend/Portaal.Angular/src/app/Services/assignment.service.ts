@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Assignment } from '../Models/assignment';
 
@@ -14,5 +15,10 @@ export class AssignmentService {
   createAssignment(assignment: Assignment){
     console.log(assignment);
     return this.httpClient.post(`${environment.apiUrl}/Assignment/create`, assignment).subscribe();
+  }
+
+  getAssignment(assignmentId: number): Observable<Assignment> {
+    console.log(assignmentId);
+    return this.httpClient.get<Assignment>(`${environment.apiUrl}/Assignment/get/${assignmentId}`, );
   }
 }
