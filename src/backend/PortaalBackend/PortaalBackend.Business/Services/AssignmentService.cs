@@ -20,6 +20,11 @@ namespace PortaalBackend.Business.Services
             await repository.SaveChanges();
             return createdAssignment;
         }
+
+        public Assignment? GetById(int assignmentId)
+        {
+            return repository.GetById(assignmentId);
+        }
     }
 }
 

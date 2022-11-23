@@ -21,5 +21,13 @@ namespace PortaalBackend.API.Controllers
             Assignment createdAssignment = await assignmentService.CreateAssignment(assignment);
             return Ok(createdAssignment);
         }
+
+        [HttpGet("get/{id}")]
+        public IActionResult GetById(int id)
+        {
+            Assignment? assignment = assignmentService.GetById(id);
+
+            return assignment == null ? NotFound() : Ok(assignment);
+        }
     }
 }
