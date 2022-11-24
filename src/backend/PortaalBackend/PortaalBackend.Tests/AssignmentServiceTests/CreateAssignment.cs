@@ -14,7 +14,7 @@ public class CreateAssignment
 
 
     [Fact]
-    public async Task CreateRepair_Should_Call_Repository()
+    public async Task CreateAssignment_Should_Call_Repository()
     {
         // Arrange
         Assignment input = new() { Id = -1 };
