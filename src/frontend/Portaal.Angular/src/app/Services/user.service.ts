@@ -1,3 +1,5 @@
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,5 +7,10 @@ import { Injectable } from '@angular/core';
 })
 export class UserService {
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
+
+  login(username: string, password: string) {
+    console.log(username, password);
+    return this.httpClient.post(`${environment.apiUrl}/User/login`, { username, password }).subscribe();
+  }
 }

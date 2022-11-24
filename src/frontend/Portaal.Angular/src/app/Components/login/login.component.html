@@ -1,0 +1,14 @@
+<div class="example-container">
+    <mat-form-field appearance="fill">
+        <mat-label>Enter your username</mat-label>
+        <input type="email" matInput placeholder="ex.ample@mail.com" [formControl]="usernameForm" required>
+        <mat-error *ngIf="usernameForm.invalid">Invalid Input</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter your password</mat-label>
+        <input type="password" matInput placeholder="*******" [formControl]="passwordForm" required>
+        <mat-error *ngIf="passwordForm.invalid">Invalid Input</mat-error>
+    </mat-form-field>
+
+    <button [disabled]="usernameForm.invalid || passwordForm.invalid" (click)="LoginUser()">Login</button>
+</div>
