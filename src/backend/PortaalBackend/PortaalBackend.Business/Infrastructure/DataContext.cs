@@ -34,7 +34,6 @@ namespace PortaalBackend.Business.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // AutoInclude etc.
             modelBuilder.Entity<Assignment>().OwnsOne(a => a.Ratings);
 
 
@@ -44,7 +43,6 @@ namespace PortaalBackend.Business.Infrastructure
 
         private static ModelBuilder Seeding(ModelBuilder modelBuilder)
         {
-            // SEEDING
             User john = new() { CreatedById = -2, Email = "john.smith@gmail.com", FirstName = "John", LastName = "Smith", Id = 1 };
             User jane = new() { CreatedById = -2, Email = "jane.smith@gmail.com", FirstName = "Jane", LastName = "Smith", Id = 2 };
             modelBuilder.Entity<User>().HasData(john, jane);
