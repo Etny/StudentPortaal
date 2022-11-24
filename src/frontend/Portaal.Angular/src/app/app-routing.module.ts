@@ -1,9 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AssignmentDetailsComponent } from './Components/assignment-details/assignment-details.component';
 import { AssignmentListComponent } from './Components/assignments/assignment-list/assignment-list.component';
+import { CreateAssignmentComponent } from './Components/create-assignment/create-assignment.component';
 
 const routes: Routes = [
-  { path: 'assignments', component: AssignmentListComponent}
+
+  {
+    path: 'create-assignment',
+    component: CreateAssignmentComponent
+  },
+  {
+    path: "assignment/:id",
+    component: AssignmentDetailsComponent
+  },
+  {
+    path: "assignment-overview",
+    component: AssignmentListComponent
+  }
 ];
 
 @NgModule({

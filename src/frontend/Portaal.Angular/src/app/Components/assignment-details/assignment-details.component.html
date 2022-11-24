@@ -1,0 +1,20 @@
+<div class="container" *ngIf="assignment">
+    <h1>{{assignment.title}}</h1>
+    <h2>{{assignment.description}}</h2>
+    <hr>
+    <h3>Date Created:</h3>
+    <p>{{assignment.dateCreated}}</p>
+    <hr>
+    <h3>Rating:</h3>
+    <p>{{assignment.ratings.average}}</p>
+    <hr>
+    <h3>Tags:</h3>
+    <div *ngFor="let tag of assignment.tags">
+        <p>{{tag.name}}</p>
+    </div>
+    <hr>
+    <h3>Comments:</h3>
+    <div *ngFor="let comment of assignment.comments">
+        <p>{{comment.content}}</p>
+    </div>
+</div>

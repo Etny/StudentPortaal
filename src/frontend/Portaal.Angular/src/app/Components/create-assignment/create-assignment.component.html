@@ -1,0 +1,19 @@
+<div class="example-container">
+    <mat-form-field appearance="fill">
+        <mat-label>Enter a title</mat-label>
+        <input matInput placeholder="title here" [formControl]="titleForm" required>
+        <mat-error *ngIf="titleForm.invalid">Invalid Input</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter a summary</mat-label>
+        <input matInput placeholder="summary here" [formControl]="summaryForm" required>
+        <mat-error *ngIf="summaryForm.invalid">Invalid Input</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Add atleast 1 tag</mat-label>
+        <input matInput placeholder="tag1, tag2, tag3" [formControl]="tagsForm" required>
+        <mat-error *ngIf="tagsForm.invalid">Invalid Input</mat-error>
+    </mat-form-field>
+
+    <button [disabled]="titleForm.invalid || summaryForm.invalid || tagsForm.invalid" (click)="createAssignment()">Create Assignment</button>
+</div>

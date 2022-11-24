@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Assignment } from 'src/app/Models/assignment.model';
+import { Assignment } from 'src/app/Models/assignment';
 
 @Component({
   selector: 'app-assignment-card',
