@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PortaalBackend.Domain.Configuration;
 using PortaalBackend.Domain.Models;
+using PortaalBackend.Domain.Models.Joins;
 
 namespace PortaalBackend.Business.Infrastructure
 {
@@ -13,6 +15,8 @@ namespace PortaalBackend.Business.Infrastructure
         public DbSet<Tag> Tag { get; set; }
         public DbSet<User> User { get; set; }
 
+        //Join Tables
+        public DbSet<AssignmentTag> AssignmentTags { get; set; }
 
 
         public DataContext()
@@ -27,7 +31,7 @@ namespace PortaalBackend.Business.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=portaal.db;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=PortalDB;User Id=sa;Password=Pass@word;Trust Server Certificate=true;");
 
             base.OnConfiguring(optionsBuilder);
         }
@@ -35,7 +39,7 @@ namespace PortaalBackend.Business.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Assignment>().OwnsOne(a => a.Ratings);
-
+            modelBuilder.ApplyConfiguration(new AssignmentTagConfiguration());
 
             modelBuilder = Seeding(modelBuilder);
             base.OnModelCreating(modelBuilder);
