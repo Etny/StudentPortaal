@@ -13,6 +13,7 @@ namespace PortaalBackend.Domain.Models
         //public List<Attachment> Attachments { get; set; }
         public ICollection<AssignmentTag> AssignmentTags { get; set; } = new List<AssignmentTag>();
         public Ratings Ratings { get; set; } = new();
-        public List<Comment> Comments { get; set; } = new();
+        // public List<Comment> Comments { get; set; } = new();
+        public ICollection<AssignmentComment> AssignmentComments { get; set; } = new List<AssignmentComment>();
     }
 }

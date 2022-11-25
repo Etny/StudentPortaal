@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PortaalBackend.Business.Infrastructure.Configuration;
 using PortaalBackend.Domain.Configuration;
 using PortaalBackend.Domain.Models;
 using PortaalBackend.Domain.Models.Joins;
@@ -16,6 +17,7 @@ namespace PortaalBackend.Business.Infrastructure
         public DbSet<User> User { get; set; }
 
         //Join Tables
+        public DbSet<AssignmentComment> AssignmentComments { get; set; }
         public DbSet<AssignmentTag> AssignmentTags { get; set; }
 
 
@@ -40,6 +42,7 @@ namespace PortaalBackend.Business.Infrastructure
         {
             modelBuilder.Entity<Assignment>().OwnsOne(a => a.Ratings);
             modelBuilder.ApplyConfiguration(new AssignmentTagConfiguration());
+            modelBuilder.ApplyConfiguration(new AssignmentCommentConfiguration());
 
             modelBuilder = Seeding(modelBuilder);
             base.OnModelCreating(modelBuilder);
