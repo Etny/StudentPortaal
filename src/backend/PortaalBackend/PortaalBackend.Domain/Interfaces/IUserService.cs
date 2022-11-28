@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PortaalBackend.Domain.Models;
 
 namespace PortaalBackend.Domain.Interfaces
 {
     public interface IUserService
     {
+        public Task<User> CreateUser(User user);
+        public User GetUserByEmail(string email);
     }
 }
