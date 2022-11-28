@@ -14,5 +14,6 @@ namespace PortaalBackend.Domain.Models
 
         public string Email { get; set; } = string.Empty;
         public int? CreatedById { get; set; }
+        public User? CreatedBy { get; set; }
     }
 }
