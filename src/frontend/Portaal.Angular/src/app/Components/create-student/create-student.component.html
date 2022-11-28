@@ -1,0 +1,19 @@
+<div class="example-container">
+    <mat-form-field appearance="fill">
+        <mat-label>Enter a first name</mat-label>
+        <input matInput placeholder="John" [formControl]="firstName" required>
+        <mat-error *ngIf="firstName.invalid">Invalid Input</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter a last name</mat-label>
+        <input matInput placeholder="Smith" [formControl]="lastName" required>
+        <mat-error *ngIf="lastName.invalid">Invalid Input</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter an email address</mat-label>
+        <input matInput placeholder="ex.ample@email.com" [formControl]="emailAddress" required>
+        <mat-error *ngIf="emailAddress.invalid">Invalid Input</mat-error>
+    </mat-form-field>
+
+    <button [disabled]="firstName.invalid || lastName.invalid || emailAddress.invalid" (click)="createStudent()">Create Student</button>
+</div>
