@@ -10,10 +10,11 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { AssignmentDetailsComponent } from './Components/assignment-details/assignment-details.component';
-import { LoginComponent } from './Components/login/login.component'
+import { LoginComponent } from './Components/login/login.component';
+import { CreateStudentComponent } from './Components/create-student/create-student.component'
 
 @NgModule({
-  declarations: [AppComponent, CreateAssignmentComponent, AssignmentDetailsComponent, LoginComponent],
+  declarations: [AppComponent, CreateAssignmentComponent, AssignmentDetailsComponent, LoginComponent, CreateStudentComponent],
   imports: [
     HttpClientModule,
     ReactiveFormsModule,
