@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PortaalBackend.API.Models;
 using PortaalBackend.Domain.Interfaces;
 using PortaalBackend.Domain.Models;
 
@@ -16,15 +17,15 @@ namespace PortaalBackend.API.Controllers
             this.assignmentService = assignmentService;
         }
 
-        [Authorize(Roles = "Teacher, Admin")]
+        // [Authorize(Roles = "Teacher, Admin")]
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAssignment([FromBody] Assignment assignment)
+        public async Task<IActionResult> CreateAssignment([FromBody] CreateAssignmentInput assignment)
         {
-            Assignment createdAssignment = await assignmentService.CreateAssignment(assignment);
+            Assignment createdAssignment = await assignmentService.CreateAssignment(assignment.ToAssignment());
             return Ok(createdAssignment);
         }
 
-        [Authorize(Roles = "Student, Teacher, Admin")]
+        // [Authorize(Roles = "Student, Teacher, Admin")]
         [HttpGet("get/{id}")]
         public IActionResult GetById(int id)
         {
