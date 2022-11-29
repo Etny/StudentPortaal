@@ -18,7 +18,7 @@ public class GetById
 
 
     [Fact]
-    public void GetById_Should_Call_Repository()
+    public void Should_Call_Repository()
     {
         // Arrange
         Assignment input = new() { Id = -1 };
@@ -33,7 +33,7 @@ public class GetById
     }
 
     [Fact]
-    public void GetById_Should_Return_Null_When_No_Assignment_Matches_Id()
+    public void Should_Return_Null_When_No_Assignment_Matches_Id()
     {
         // Arrange
         mockRepository.Setup(y => y.GetById(It.IsAny<int>())).Returns<Assignment>(null);

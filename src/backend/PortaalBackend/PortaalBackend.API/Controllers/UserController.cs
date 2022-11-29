@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using PortaalBackend.API.Models;
 using PortaalBackend.API.Tokens;
 using PortaalBackend.Domain.Interfaces;
+using PortaalBackend.Domain.Models;
+using System.Security.Claims;
 
 namespace PortaalBackend.API.Controllers
 {
@@ -45,10 +48,38 @@ namespace PortaalBackend.API.Controllers
                     return Unauthorized("Invalid Role");
 
                 return Accepted(newToken);
-
             }
 
             return Unauthorized("Invalid login");
+        }
+
+        [HttpPost("create-student")]
+        [Authorize(Roles = "Teacher, Admin")]
+        public async Task<IActionResult> CreateStudent([FromBody] User student)
+        {
+            IdentityUser newUser = new() { UserName = student.Email, Email = student.Email };
+            IdentityResult result = await userManager.CreateAsync(newUser);
+
+            if (result.Succeeded)
+            {
+                IEnumerable<Claim> claims = User.Claims;
+                string email = claims.Single(x => x.Type == ClaimTypes.Email).Value;
+
+                User teacher = userService.GetUserByEmail(email);
+
+                if (teacher != null)
+                {
+                    student.CreatedById = teacher!.Id;
+                    student.CreatedBy = teacher;
+
+                    User createdUser = await userService.CreateUser(student);
+
+                    await userManager.AddToRoleAsync(newUser, "Student");
+
+                    return Ok("Succesfully created new student");
+                }
+            }
+            return BadRequest("Failed to create new student");
         }
     }
 }

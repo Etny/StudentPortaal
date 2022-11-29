@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AssignmentDetailsComponent } from './Components/assignment-details/assignment-details.component';
 import { AssignmentListComponent } from './Components/assignments/assignment-list/assignment-list.component';
 import { CreateAssignmentComponent } from './Components/create-assignment/create-assignment.component';
+import { CreateStudentComponent } from './Components/create-student/create-student.component';
 import { LoginComponent } from './Components/login/login.component';
 
 const routes: Routes = [
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginComponent
+  },
+  {
+    path: "create-student",
+    component: CreateStudentComponent
   },
   {
     path: "assignment-overview",
