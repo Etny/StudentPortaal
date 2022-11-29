@@ -18,13 +18,13 @@ public class CreateUser
     {
         // Arrange
         User input = new() { Id = -1 };
-        mockRepository.Setup(y => y.Create(input)).ReturnsAsync(input);
+        mockRepository.Setup(y => y.CreateAsync(input)).ReturnsAsync(input);
 
         // Act
         User answer = await userService.CreateUser(input);
 
         // Assert
-        mockRepository.Verify(y => y.Create(input), Times.Once);
+        mockRepository.Verify(y => y.CreateAsync(input), Times.Once);
         Assert.Equal(input.Id, answer.Id);
     }
 }

@@ -14,7 +14,7 @@ namespace PortaalBackend.Business.Services
 
         public async Task<User> CreateUser(User user)
         {
-            User createdUser = await repository.Create(user);
+            User createdUser = await repository.CreateAsync(user);
             return createdUser;
         }
 
