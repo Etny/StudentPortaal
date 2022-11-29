@@ -25,6 +25,11 @@ namespace PortaalBackend.Business.Services
         {
             return repository.GetById(assignmentId);
         }
+
+        public List<Assignment> GetAll()
+        {
+            return repository.GetAll().ToList();
+        }
     }
 }
 

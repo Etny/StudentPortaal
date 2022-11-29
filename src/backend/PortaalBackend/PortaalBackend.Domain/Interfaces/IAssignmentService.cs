@@ -6,5 +6,6 @@ namespace PortaalBackend.Domain.Interfaces
     {
         public Task<Assignment> CreateAssignment(Assignment assignment);
         public Assignment? GetById(int assignmentId);
+        public List<Assignment> GetAll();
     }
 }

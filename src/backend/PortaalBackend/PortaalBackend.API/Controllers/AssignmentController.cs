@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortaalBackend.API.Models;
+=======
+﻿using Microsoft.AspNetCore.Mvc;
+using PortaalBackend.Business.Extensions;
+using PortaalBackend.Business.Extensions.Models;
+>>>>>>> AssigmentOverview
 using PortaalBackend.Domain.Interfaces;
 using PortaalBackend.Domain.Models;
 
@@ -17,7 +23,15 @@ namespace PortaalBackend.API.Controllers
             this.assignmentService = assignmentService;
         }
 
-        // [Authorize(Roles = "Teacher, Admin")]
+        [HttpGet("all")]
+        public IActionResult GetAll([FromQuery] AssignmentFilterOptions options)
+        {
+            List<Assignment> assignments = assignmentService.GetAll();
+            assignments = assignments.FilterAndSort(options);
+
+            return Ok(assignments);
+        }
+
         [HttpPost("create")]
         public async Task<IActionResult> CreateAssignment([FromBody] CreateAssignmentInput assignment)
         {
