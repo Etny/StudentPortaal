@@ -33,7 +33,12 @@ namespace PortaalBackend.Business.Infrastructure
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost;Database=PortalDB;User Id=sa;Password=Pass@word;Trust Server Certificate=true;");
+            optionsBuilder.UseSqlServer(
+                OperatingSystem.IsLinux()
+                ? "Server=localhost;Database=PortalDB;User Id=sa;Password=Pass@word;Trust Server Certificate=true;"
+                : "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=portaal.db;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"
+            );
+            
 
             base.OnConfiguring(optionsBuilder);
         }

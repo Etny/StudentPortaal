@@ -32,7 +32,12 @@ namespace PortaalBackend.API
             builder.Services.AddScoped<IUserService, UserService>();
 
 
-            builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")), ServiceLifetime.Transient);
+                
+            builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(
+                OperatingSystem.IsLinux() 
+                    ? "DefaultLinux" 
+                    : "DefaultWindows"
+                )), ServiceLifetime.Transient);
 
             builder.Services.AddControllers();
 
