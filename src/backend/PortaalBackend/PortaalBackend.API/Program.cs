@@ -42,7 +42,7 @@ namespace PortaalBackend.API
 
             builder.Services.AddCors(options =>
             {
-                options.AddDefaultPolicy(policy => policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+                options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
 
 
@@ -75,11 +75,11 @@ namespace PortaalBackend.API
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseCors("AllowAll");
             }
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
-            app.UseCors();
 
             app.UseAuthorization();
 
