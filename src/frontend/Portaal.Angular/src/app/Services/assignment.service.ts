@@ -27,4 +27,9 @@ export class AssignmentService {
       params: new HttpParams().set('SearchQuery', filter)
     });
   }
+  
+  addComment(request: { assignmentId: number, content: string }): Observable<Comment> {
+    console.log(request);
+    return this.httpClient.post<Comment>(`${environment.apiUrl}/Assignment/comment`, request);
+  }
 }

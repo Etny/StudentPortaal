@@ -35,6 +35,13 @@ namespace PortaalBackend.API.Controllers
             return Ok(createdAssignment);
         }
 
+        [HttpPost("comment")]
+        public async Task<IActionResult> AddComment([FromBody] AddCommentRequest request)
+        {
+            Comment comment = await assignmentService.AddCommentAsync(request.ToComment());
+            return Ok(comment);
+        }
+
         // [Authorize(Roles = "Student, Teacher, Admin")]
         [HttpGet("get/{id}")]
         public IActionResult GetById(int id)

@@ -6,29 +6,39 @@ namespace PortaalBackend.Business.Services
 
     public class AssignmentService : IAssignmentService
     {
-        private readonly IRepository<Assignment> repository;
+        private readonly IRepository<Assignment> assignmentRepo;
+        private readonly IRepository<Comment> commentRepo;
 
-        public AssignmentService(IRepository<Assignment> repository)
+        public AssignmentService(IRepository<Assignment> repository, IRepository<Comment> commentRepo)
         {
-            this.repository = repository;
+            this.assignmentRepo = repository;
+            this.commentRepo = commentRepo;
         }
 
         public async Task<Assignment> CreateAssignmentAsync(Assignment assignment)
         {
             assignment.DateCreated = DateTime.Now;
-            Assignment createdAssignment = await repository.CreateAsync(assignment);
-            await repository.SaveChangesAsync();
+            Assignment createdAssignment = await assignmentRepo.CreateAsync(assignment);
+            await assignmentRepo.SaveChangesAsync();
             return createdAssignment;
+        }
+
+        public async Task<Comment> AddCommentAsync(Comment comment)
+        {
+            if (GetById(comment.AssignmentId) == null) throw new ArgumentException("No valid AssignmentId provided");
+
+            Comment result = await commentRepo.CreateAsync(comment);
+            return result;
         }
 
         public Assignment? GetById(int assignmentId)
         {
-            return repository.GetById(assignmentId);
+            return assignmentRepo.GetById(assignmentId);
         }
 
         public List<Assignment> GetAll()
         {
-            return repository.GetAll().ToList();
+            return assignmentRepo.GetAll().ToList();
         }
     }
 }

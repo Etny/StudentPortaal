@@ -5,11 +5,15 @@ public class GetById
 {
     private readonly AssignmentService assignmentService;
     private readonly Mock<IRepository<Assignment>> mockRepository;
+    private readonly Mock<IRepository<Comment>> mockCommentRepository;
+
 
     public GetById()
     {
         mockRepository = new Mock<IRepository<Assignment>>();
-        assignmentService = new AssignmentService(mockRepository.Object);
+        mockCommentRepository = new Mock<IRepository<Comment>>();
+
+        assignmentService = new AssignmentService(mockRepository.Object, mockCommentRepository.Object);
     }
 
 
