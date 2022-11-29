@@ -1,4 +1,5 @@
 ﻿using PortaalBackend.Domain.Interfaces;
+using PortaalBackend.Domain.Models.Joins;
 
 namespace PortaalBackend.Domain.Models
 {
@@ -10,8 +11,9 @@ namespace PortaalBackend.Domain.Models
         public DateTime DateCreated { get; set; }
         public int CreatedById { get; set; }
         //public List<Attachment> Attachments { get; set; }
-        public List<Tag> Tags { get; set; } = new();
+        public ICollection<AssignmentTag> AssignmentTags { get; set; } = new List<AssignmentTag>();
         public Ratings Ratings { get; set; } = new();
-        public List<Comment> Comments { get; set; } = new();
+        // public List<Comment> Comments { get; set; } = new();
+        public ICollection<AssignmentComment> AssignmentComments { get; set; } = new List<AssignmentComment>();
     }
 }

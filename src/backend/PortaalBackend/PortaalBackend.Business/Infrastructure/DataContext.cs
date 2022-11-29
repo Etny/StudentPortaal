@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PortaalBackend.Business.Infrastructure.Configuration;
+using PortaalBackend.Domain.Configuration;
 using PortaalBackend.Domain.Models;
+using PortaalBackend.Domain.Models.Joins;
 
 namespace PortaalBackend.Business.Infrastructure
 {
@@ -13,6 +16,9 @@ namespace PortaalBackend.Business.Infrastructure
         public DbSet<Tag> Tag { get; set; }
         public DbSet<User> User { get; set; }
 
+        //Join Tables
+        public DbSet<AssignmentComment> AssignmentComments { get; set; }
+        public DbSet<AssignmentTag> AssignmentTags { get; set; }
 
 
         public DataContext()
@@ -34,9 +40,9 @@ namespace PortaalBackend.Business.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // AutoInclude etc.
             modelBuilder.Entity<Assignment>().OwnsOne(a => a.Ratings);
-
+            modelBuilder.ApplyConfiguration(new AssignmentTagConfiguration());
+            modelBuilder.ApplyConfiguration(new AssignmentCommentConfiguration());
 
             modelBuilder = Seeding(modelBuilder);
             base.OnModelCreating(modelBuilder);
@@ -44,7 +50,6 @@ namespace PortaalBackend.Business.Infrastructure
 
         private static ModelBuilder Seeding(ModelBuilder modelBuilder)
         {
-            // SEEDING
             User john = new() { CreatedById = -2, Email = "john.smith@gmail.com", FirstName = "John", LastName = "Smith", Id = 1 };
             User jane = new() { CreatedById = -2, Email = "jane.smith@gmail.com", FirstName = "Jane", LastName = "Smith", Id = 2 };
             modelBuilder.Entity<User>().HasData(john, jane);

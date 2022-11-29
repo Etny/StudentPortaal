@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AssignmentDetailsComponent } from './Components/assignment-details/assignment-details.component';
 import { CreateAssignmentComponent } from './Components/create-assignment/create-assignment.component';
+import { LoginComponent } from './Components/login/login.component';
 
 const routes: Routes = [
 
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: "assignment/:id",
     component: AssignmentDetailsComponent
+  },
+  {
+    path: "login",
+    component: LoginComponent
   }
 ];
 
