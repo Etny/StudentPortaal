@@ -13,11 +13,11 @@ namespace PortaalBackend.Business.Services
             this.repository = repository;
         }
 
-        public async Task<Assignment> CreateAssignment(Assignment assignment)
+        public async Task<Assignment> CreateAssignmentAsync(Assignment assignment)
         {
             assignment.DateCreated = DateTime.Now;
-            Assignment createdAssignment = await repository.Create(assignment);
-            await repository.SaveChanges();
+            Assignment createdAssignment = await repository.CreateAsync(assignment);
+            await repository.SaveChangesAsync();
             return createdAssignment;
         }
 

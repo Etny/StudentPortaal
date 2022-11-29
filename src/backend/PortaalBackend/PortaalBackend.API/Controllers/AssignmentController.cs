@@ -31,7 +31,7 @@ namespace PortaalBackend.API.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateAssignment([FromBody] CreateAssignmentInput assignment)
         {
-            Assignment createdAssignment = await assignmentService.CreateAssignment(assignment.ToAssignment());
+            Assignment createdAssignment = await assignmentService.CreateAssignmentAsync(assignment.ToAssignment());
             return Ok(createdAssignment);
         }
 
