@@ -5,7 +5,7 @@
 namespace PortaalBackend.Business.Migrations
 {
     /// <inheritdoc />
-    public partial class ManyToMany : Migration
+    public partial class ManyToManyTags : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,41 +22,19 @@ namespace PortaalBackend.Business.Migrations
                 name: "IX_Tag_AssignmentId",
                 table: "Tag");
 
-            migrationBuilder.DropIndex(
-                name: "IX_Comment_AssignmentId",
-                table: "Comment");
-
             migrationBuilder.DropColumn(
                 name: "AssignmentId",
                 table: "Tag");
 
-            migrationBuilder.DropColumn(
+            migrationBuilder.AlterColumn<int>(
                 name: "AssignmentId",
-                table: "Comment");
-
-            migrationBuilder.CreateTable(
-                name: "AssignmentComments",
-                columns: table => new
-                {
-                    AssignmentId = table.Column<int>(type: "int", nullable: false),
-                    CommentId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AssignmentComments", x => new { x.AssignmentId, x.CommentId });
-                    table.ForeignKey(
-                        name: "FK_AssignmentComments_Assignment_AssignmentId",
-                        column: x => x.AssignmentId,
-                        principalTable: "Assignment",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AssignmentComments_Comment_CommentId",
-                        column: x => x.CommentId,
-                        principalTable: "Comment",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
+                table: "Comment",
+                type: "int",
+                nullable: false,
+                defaultValue: 0,
+                oldClrType: typeof(int),
+                oldType: "int",
+                oldNullable: true);
 
             migrationBuilder.CreateTable(
                 name: "AssignmentTags",
@@ -83,21 +61,25 @@ namespace PortaalBackend.Business.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AssignmentComments_CommentId",
-                table: "AssignmentComments",
-                column: "CommentId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_AssignmentTags_TagId",
                 table: "AssignmentTags",
                 column: "TagId");
+
+            migrationBuilder.AddForeignKey(
+                name: "FK_Comment_Assignment_AssignmentId",
+                table: "Comment",
+                column: "AssignmentId",
+                principalTable: "Assignment",
+                principalColumn: "Id",
+                onDelete: ReferentialAction.Cascade);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "AssignmentComments");
+            migrationBuilder.DropForeignKey(
+                name: "FK_Comment_Assignment_AssignmentId",
+                table: "Comment");
 
             migrationBuilder.DropTable(
                 name: "AssignmentTags");
@@ -108,20 +90,17 @@ namespace PortaalBackend.Business.Migrations
                 type: "int",
                 nullable: true);
 
-            migrationBuilder.AddColumn<int>(
+            migrationBuilder.AlterColumn<int>(
                 name: "AssignmentId",
                 table: "Comment",
                 type: "int",
-                nullable: true);
+                nullable: true,
+                oldClrType: typeof(int),
+                oldType: "int");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Tag_AssignmentId",
                 table: "Tag",
-                column: "AssignmentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Comment_AssignmentId",
-                table: "Comment",
                 column: "AssignmentId");
 
             migrationBuilder.AddForeignKey(

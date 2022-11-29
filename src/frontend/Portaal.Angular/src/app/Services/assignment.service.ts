@@ -21,4 +21,9 @@ export class AssignmentService {
     console.log(assignmentId);
     return this.httpClient.get<Assignment>(`${environment.apiUrl}/Assignment/get/${assignmentId}`, );
   }
+
+  addComment(request: { assignmentId: number, content: string }): Observable<Comment> {
+    console.log(request);
+    return this.httpClient.post<Comment>(`${environment.apiUrl}/Assignment/comment`, request);
+  }
 }

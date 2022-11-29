@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PortaalBackend.Domain.Models.Joins;
 
-namespace PortaalBackend.Domain.Configuration 
+namespace PortaalBackend.Business.Infrastructure.Configuration
 {
     public class AssignmentTagConfiguration : IEntityTypeConfiguration<AssignmentTag>
     {

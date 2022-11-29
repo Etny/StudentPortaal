@@ -12,8 +12,8 @@ using PortaalBackend.Business.Infrastructure;
 namespace PortaalBackend.Business.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221125114527_ManyToMany")]
-    partial class ManyToMany
+    [Migration("20221129112458_ManyToManyTags")]
+    partial class ManyToManyTags
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -258,6 +258,9 @@ namespace PortaalBackend.Business.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("AssignmentId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -270,22 +273,9 @@ namespace PortaalBackend.Business.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AssignmentId");
+
                     b.ToTable("Comment");
-                });
-
-            modelBuilder.Entity("PortaalBackend.Domain.Models.Joins.AssignmentComment", b =>
-                {
-                    b.Property<int>("AssignmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CommentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AssignmentId", "CommentId");
-
-                    b.HasIndex("CommentId");
-
-                    b.ToTable("AssignmentComments");
                 });
 
             modelBuilder.Entity("PortaalBackend.Domain.Models.Joins.AssignmentTag", b =>
@@ -467,23 +457,15 @@ namespace PortaalBackend.Business.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PortaalBackend.Domain.Models.Joins.AssignmentComment", b =>
+            modelBuilder.Entity("PortaalBackend.Domain.Models.Comment", b =>
                 {
                     b.HasOne("PortaalBackend.Domain.Models.Assignment", "Assignment")
-                        .WithMany("AssignmentComments")
+                        .WithMany("Comments")
                         .HasForeignKey("AssignmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PortaalBackend.Domain.Models.Comment", "Comment")
-                        .WithMany("AssignmentComments")
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Assignment");
-
-                    b.Navigation("Comment");
                 });
 
             modelBuilder.Entity("PortaalBackend.Domain.Models.Joins.AssignmentTag", b =>
@@ -507,14 +489,9 @@ namespace PortaalBackend.Business.Migrations
 
             modelBuilder.Entity("PortaalBackend.Domain.Models.Assignment", b =>
                 {
-                    b.Navigation("AssignmentComments");
-
                     b.Navigation("AssignmentTags");
-                });
 
-            modelBuilder.Entity("PortaalBackend.Domain.Models.Comment", b =>
-                {
-                    b.Navigation("AssignmentComments");
+                    b.Navigation("Comments");
                 });
 
             modelBuilder.Entity("PortaalBackend.Domain.Models.Tag", b =>

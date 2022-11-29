@@ -7,10 +7,11 @@ namespace PortaalBackend.Domain.Models
     public record Comment : IEntity
     {
         public int Id { get; set; }
+        public int AssignmentId { get; set; }
+        public Assignment Assignment { get; set; } = new();
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public string Content { get; set; } = string.Empty;
-        public ICollection<AssignmentComment> AssignmentComments { get; set; } = new List<AssignmentComment>();
 
     }
 }
