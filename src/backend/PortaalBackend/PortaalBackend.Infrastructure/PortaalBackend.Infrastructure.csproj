@@ -22,7 +22,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PortaalBackend.Domain\PortaalBackend.Domain.csproj" />
-    <ProjectReference Include="..\PortaalBackend.Infrastructure\PortaalBackend.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

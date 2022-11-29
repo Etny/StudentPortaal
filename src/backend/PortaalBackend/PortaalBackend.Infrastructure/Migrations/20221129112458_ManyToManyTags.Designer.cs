@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PortaalBackend.Business.Infrastructure;
+using PortaalBackend.Infrastructure;
 
 #nullable disable
 
-namespace PortaalBackend.Business.Migrations
+namespace PortaalBackend.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221121134843_identity")]
-    partial class identity
+    [Migration("20221129112458_ManyToManyTags")]
+    partial class ManyToManyTags
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -258,7 +258,7 @@ namespace PortaalBackend.Business.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AssignmentId")
+                    b.Property<int>("AssignmentId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -276,6 +276,21 @@ namespace PortaalBackend.Business.Migrations
                     b.HasIndex("AssignmentId");
 
                     b.ToTable("Comment");
+                });
+
+            modelBuilder.Entity("PortaalBackend.Domain.Models.Joins.AssignmentTag", b =>
+                {
+                    b.Property<int>("AssignmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AssignmentId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("AssignmentTags");
                 });
 
             modelBuilder.Entity("PortaalBackend.Domain.Models.Rating", b =>
@@ -308,16 +323,11 @@ namespace PortaalBackend.Business.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AssignmentId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AssignmentId");
 
                     b.ToTable("Tag");
                 });
@@ -449,23 +459,44 @@ namespace PortaalBackend.Business.Migrations
 
             modelBuilder.Entity("PortaalBackend.Domain.Models.Comment", b =>
                 {
-                    b.HasOne("PortaalBackend.Domain.Models.Assignment", null)
+                    b.HasOne("PortaalBackend.Domain.Models.Assignment", "Assignment")
                         .WithMany("Comments")
-                        .HasForeignKey("AssignmentId");
+                        .HasForeignKey("AssignmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Assignment");
                 });
 
-            modelBuilder.Entity("PortaalBackend.Domain.Models.Tag", b =>
+            modelBuilder.Entity("PortaalBackend.Domain.Models.Joins.AssignmentTag", b =>
                 {
-                    b.HasOne("PortaalBackend.Domain.Models.Assignment", null)
-                        .WithMany("Tags")
-                        .HasForeignKey("AssignmentId");
+                    b.HasOne("PortaalBackend.Domain.Models.Assignment", "Assignment")
+                        .WithMany("AssignmentTags")
+                        .HasForeignKey("AssignmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PortaalBackend.Domain.Models.Tag", "Tag")
+                        .WithMany("AssignmentTags")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Assignment");
+
+                    b.Navigation("Tag");
                 });
 
             modelBuilder.Entity("PortaalBackend.Domain.Models.Assignment", b =>
                 {
-                    b.Navigation("Comments");
+                    b.Navigation("AssignmentTags");
 
-                    b.Navigation("Tags");
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("PortaalBackend.Domain.Models.Tag", b =>
+                {
+                    b.Navigation("AssignmentTags");
                 });
 #pragma warning restore 612, 618
         }

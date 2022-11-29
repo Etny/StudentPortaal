@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\PortaalBackend.Business\PortaalBackend.Business.csproj" />
     <ProjectReference Include="..\PortaalBackend.Domain\PortaalBackend.Domain.csproj" />
+    <ProjectReference Include="..\PortaalBackend.Infrastructure\PortaalBackend.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

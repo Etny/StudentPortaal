@@ -2,7 +2,7 @@
 using PortaalBackend.Domain.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 
-namespace PortaalBackend.Business.Infrastructure
+namespace PortaalBackend.Infrastructure
 {
     [ExcludeFromCodeCoverage]
     public class Repository<T> : IRepository<T> where T : class, IEntity

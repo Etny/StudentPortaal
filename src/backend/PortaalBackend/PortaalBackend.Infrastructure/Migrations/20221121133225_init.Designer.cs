@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using PortaalBackend.Business.Infrastructure;
+using PortaalBackend.Infrastructure;
 
 #nullable disable
 
-namespace PortaalBackend.Business.Migrations
+namespace PortaalBackend.Infrastructure.Migrations
 {
     [DbContext(typeof(DataContext))]
     [Migration("20221121133225_init")]

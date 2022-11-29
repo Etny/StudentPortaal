@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace PortaalBackend.Business.Migrations
+namespace PortaalBackend.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class AddCommentCreator : Migration

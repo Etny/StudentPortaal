@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PortaalBackend.API.Tokens;
-using PortaalBackend.Business.Infrastructure;
 using PortaalBackend.Business.Services;
 using PortaalBackend.Domain.Interfaces;
+using PortaalBackend.Infrastructure;
 using System.Text;
 
 namespace PortaalBackend.API

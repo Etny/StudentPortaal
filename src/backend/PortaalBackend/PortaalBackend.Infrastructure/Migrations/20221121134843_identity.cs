@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace PortaalBackend.Business.Migrations
+namespace PortaalBackend.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class identity : Migration

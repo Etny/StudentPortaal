@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PortaalBackend.Business.Infrastructure.Configuration;
+using PortaalBackend.Infrastructure.Configuration;
 using PortaalBackend.Domain.Models;
 using PortaalBackend.Domain.Models.Joins;
 
-namespace PortaalBackend.Business.Infrastructure
+namespace PortaalBackend.Infrastructure
 {
     public class DataContext : IdentityDbContext<IdentityUser, IdentityRole, string>
     {

@@ -4,12 +4,14 @@ namespace PortaalBackend.Tests.AssignmentServiceTests;
 public class GetAll 
 {
     private readonly AssignmentService assignmentService;
+    private readonly Mock<IRepository<Comment>> mockCommentRepo;
     private readonly Mock<IRepository<Assignment>> mockRepo;
 
     public GetAll()
     {
         mockRepo = new Mock<IRepository<Assignment>>();
-        assignmentService = new AssignmentService(mockRepo.Object);
+        mockCommentRepo = new Mock<IRepository<Comment>>();
+        assignmentService = new AssignmentService(mockRepo.Object, mockCommentRepo.Object);
     }
 
     [Fact]
