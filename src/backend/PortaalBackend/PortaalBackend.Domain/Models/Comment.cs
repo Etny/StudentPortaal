@@ -11,6 +11,7 @@ namespace PortaalBackend.Domain.Models
         public Assignment Assignment { get; set; } = new();
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public int CreatorId { get; set; }
         public string Content { get; set; } = string.Empty;
 
     }
