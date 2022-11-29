@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortaalBackend.API.Models;
-=======
-﻿using Microsoft.AspNetCore.Mvc;
 using PortaalBackend.Business.Extensions;
 using PortaalBackend.Business.Extensions.Models;
->>>>>>> AssigmentOverview
 using PortaalBackend.Domain.Interfaces;
 using PortaalBackend.Domain.Models;
 

@@ -84,11 +84,7 @@ namespace PortaalBackend.API
             }
 
             app.UseHttpsRedirection();
-<<<<<<< HEAD
             app.UseAuthentication();
-=======
-            
->>>>>>> AssigmentOverview
 
             app.UseAuthorization();
 
