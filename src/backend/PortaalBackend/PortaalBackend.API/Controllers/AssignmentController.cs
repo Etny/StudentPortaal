@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PortaalBackend.API.Models;
+using PortaalBackend.Business.Extensions;
+using PortaalBackend.Business.Extensions.Models;
 using PortaalBackend.Domain.Interfaces;
 using PortaalBackend.Domain.Models;
 
@@ -16,15 +19,23 @@ namespace PortaalBackend.API.Controllers
             this.assignmentService = assignmentService;
         }
 
-        [Authorize(Roles = "Teacher, Admin")]
-        [HttpPost("create")]
-        public async Task<IActionResult> CreateAssignment([FromBody] Assignment assignment)
+        [HttpGet("all")]
+        public IActionResult GetAll([FromQuery] AssignmentFilterOptions options)
         {
-            Assignment createdAssignment = await assignmentService.CreateAssignment(assignment);
+            List<Assignment> assignments = assignmentService.GetAll();
+            assignments = assignments.FilterAndSort(options);
+
+            return Ok(assignments);
+        }
+
+        [HttpPost("create")]
+        public async Task<IActionResult> CreateAssignment([FromBody] CreateAssignmentInput assignment)
+        {
+            Assignment createdAssignment = await assignmentService.CreateAssignmentAsync(assignment.ToAssignment());
             return Ok(createdAssignment);
         }
 
-        [Authorize(Roles = "Student, Teacher, Admin")]
+        // [Authorize(Roles = "Student, Teacher, Admin")]
         [HttpGet("get/{id}")]
         public IActionResult GetById(int id)
         {

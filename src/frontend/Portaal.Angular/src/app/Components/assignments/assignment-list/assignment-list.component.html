@@ -1,0 +1,10 @@
+<mat-form-field appearance="fill">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="title here" [formControl]="searchVal">
+</mat-form-field>
+
+<div *ngIf="assignments$ | async as assignments" class="assignment-container">
+    <div *ngFor="let assignment of assignments" class="assignment-container-item">
+        <app-assignment-card  [assignment]="assignment"></app-assignment-card>
+    </div>
+</div>

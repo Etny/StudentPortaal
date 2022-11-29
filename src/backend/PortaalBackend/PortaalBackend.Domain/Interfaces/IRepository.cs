@@ -5,7 +5,7 @@
         public IQueryable<T> GetAll();
         public T? GetById(int id);
         public T Update(T entity);
-        public Task<T> Create(T entity);
-        public Task SaveChanges();
+        public Task<T> CreateAsync(T entity);
+        public Task SaveChangesAsync();
     }
 }

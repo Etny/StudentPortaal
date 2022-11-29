@@ -10,6 +10,7 @@ namespace PortaalBackend.Domain.Models
         public string Description { get; set; } = string.Empty;
         public DateTime DateCreated { get; set; }
         public int CreatedById { get; set; }
+        public User? CreatedBy { get; set; }
         //public List<Attachment> Attachments { get; set; }
         public ICollection<AssignmentTag> AssignmentTags { get; set; } = new List<AssignmentTag>();
         public Ratings Ratings { get; set; } = new();

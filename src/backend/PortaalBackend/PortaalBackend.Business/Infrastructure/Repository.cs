@@ -14,7 +14,7 @@ namespace PortaalBackend.Business.Infrastructure
             this.dataContext = dataContext;
         }
 
-        public async Task<T> Create(T entity)
+        public async Task<T> CreateAsync(T entity)
         {
             EntityEntry<T> entityEntry = await dataContext.AddAsync(entity);
             return entityEntry.Entity;
@@ -30,7 +30,7 @@ namespace PortaalBackend.Business.Infrastructure
             return dataContext.Set<T>().SingleOrDefault(x => x.Id == id);
         }
 
-        public async Task SaveChanges()
+        public async Task SaveChangesAsync()
         {
             await dataContext.SaveChangesAsync();
         }

@@ -1,0 +1,9 @@
+mat-card {
+
+    &-title, &-content {
+        color: white;
+    }
+
+    padding: 1rem;
+    text-align: center;
+}

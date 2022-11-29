@@ -32,7 +32,12 @@ namespace PortaalBackend.API
             builder.Services.AddScoped<IUserService, UserService>();
 
 
-            builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")), ServiceLifetime.Transient);
+                
+            builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(
+                OperatingSystem.IsLinux() 
+                    ? "DefaultLinux" 
+                    : "DefaultWindows"
+                )), ServiceLifetime.Transient);
 
             builder.Services.AddControllers();
 
@@ -42,7 +47,7 @@ namespace PortaalBackend.API
 
             builder.Services.AddCors(options =>
             {
-                options.AddDefaultPolicy(policy => policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
+                options.AddPolicy("AllowAll", policy => policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             });
 
 
@@ -75,11 +80,11 @@ namespace PortaalBackend.API
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
+                app.UseCors("AllowAll");
             }
 
             app.UseHttpsRedirection();
             app.UseAuthentication();
-            app.UseCors();
 
             app.UseAuthorization();
 
