@@ -58,7 +58,7 @@ namespace PortaalBackend.API.Controllers
         public async Task<IActionResult> CreateStudent([FromBody] User student)
         {
             IdentityUser newUser = new() { UserName = student.Email, Email = student.Email };
-            IdentityResult result = await userManager.CreateAsync(newUser, "TempPassword01!");
+            IdentityResult result = await userManager.CreateAsync(newUser);
 
             if (result.Succeeded)
             {
