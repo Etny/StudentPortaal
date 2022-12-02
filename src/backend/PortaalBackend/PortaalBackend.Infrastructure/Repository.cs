@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using PortaalBackend.Domain.Interfaces;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq.Expressions;
 
 namespace PortaalBackend.Infrastructure
 {
@@ -25,9 +27,14 @@ namespace PortaalBackend.Infrastructure
             return dataContext.Set<T>();
         }
 
-        public T? GetById(int id)
+        public T? GetById(int id, params Expression<Func<T, object>>[] includes)
         {
-            return dataContext.Set<T>().SingleOrDefault(x => x.Id == id);
+            IQueryable<T> set = dataContext.Set<T>();
+
+            foreach(var include in includes)
+                set = set.Include(include);
+
+            return set.SingleOrDefault(e => e.Id == id);
         }
 
         public async Task SaveChangesAsync()

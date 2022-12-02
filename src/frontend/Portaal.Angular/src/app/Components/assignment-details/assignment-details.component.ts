@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Assignment } from 'src/app/Models/assignment';
 import { AssignmentService } from 'src/app/Services/assignment.service';
@@ -9,6 +10,10 @@ import { AssignmentService } from 'src/app/Services/assignment.service';
   styleUrls: ['./assignment-details.component.scss'],
 })
 export class AssignmentDetailsComponent {
+
+  assignment!: Assignment;
+  commentValue: string = "";
+
   constructor(
     private route: ActivatedRoute,
     private assignmentService: AssignmentService
@@ -20,5 +25,8 @@ export class AssignmentDetailsComponent {
     });
   }
 
-  assignment!: Assignment;
+  SubmitComment() {
+    this.assignmentService.addComment(this.assignment.id!, this.commentValue).subscribe(c => this.assignment.comments.push(c));
+    this.commentValue = "";
+  }
 }

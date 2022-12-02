@@ -27,13 +27,15 @@ namespace PortaalBackend.Business.Services
         {
             if (GetById(comment.AssignmentId) == null) throw new ArgumentException("No valid AssignmentId provided");
 
+            comment.Assignment = null;
             Comment result = await commentRepo.CreateAsync(comment);
+            await commentRepo.SaveChangesAsync();
             return result;
         }
 
         public Assignment? GetById(int assignmentId)
         {
-            return assignmentRepo.GetById(assignmentId);
+            return assignmentRepo.GetById(assignmentId, a => a.Comments);
         }
 
         public List<Assignment> GetAll()

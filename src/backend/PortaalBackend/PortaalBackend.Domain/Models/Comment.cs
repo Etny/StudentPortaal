@@ -1,4 +1,5 @@
-﻿using PortaalBackend.Domain.Interfaces;
+﻿using System.Text.Json.Serialization;
+using PortaalBackend.Domain.Interfaces;
 using PortaalBackend.Domain.Models.Joins;
 
 namespace PortaalBackend.Domain.Models
@@ -8,7 +9,8 @@ namespace PortaalBackend.Domain.Models
     {
         public int Id { get; set; }
         public int AssignmentId { get; set; }
-        public Assignment Assignment { get; set; } = new();
+        [JsonIgnore]
+        public Assignment? Assignment { get; set; } = null;
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public int CreatorId { get; set; }

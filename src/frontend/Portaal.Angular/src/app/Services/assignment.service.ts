@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Assignment } from '../Models/assignment';
+import { Comment } from '../Models/comment';
 
 @Injectable({
   providedIn: 'root'
@@ -28,8 +29,8 @@ export class AssignmentService {
     });
   }
   
-  addComment(request: { assignmentId: number, content: string }): Observable<Comment> {
-    console.log(request);
-    return this.httpClient.post<Comment>(`${environment.apiUrl}/Assignment/comment`, request);
+  addComment(assignmentId: number, content: string): Observable<Comment> {
+    console.log(assignmentId, content);
+    return this.httpClient.post<Comment>(`${environment.apiUrl}/Assignment/comment`, {assignmentId: assignmentId, content: content});
   }
 }
