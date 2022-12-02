@@ -1,3 +1,5 @@
+using Mapster;
+using MapsterMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +33,8 @@ namespace PortaalBackend.API
             builder.Services.AddScoped<IAssignmentService, AssignmentService>();
             builder.Services.AddScoped<IUserService, UserService>();
 
+            builder.Services.AddSingleton(new TypeAdapterConfig());
+            builder.Services.AddScoped<IMapper, ServiceMapper>();
 
                 
             builder.Services.AddDbContext<DataContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString(

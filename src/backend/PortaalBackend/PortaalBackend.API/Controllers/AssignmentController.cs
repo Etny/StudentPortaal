@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Mapster;
+using MapsterMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PortaalBackend.API.Models;
 using PortaalBackend.Business.Extensions;
@@ -13,10 +15,12 @@ namespace PortaalBackend.API.Controllers
     public class AssignmentController : ControllerBase
     {
         private readonly IAssignmentService assignmentService;
+        private readonly IMapper _mapper;
 
-        public AssignmentController(IAssignmentService assignmentService)
+        public AssignmentController(IAssignmentService assignmentService, IMapper mapper)
         {
             this.assignmentService = assignmentService;
+            _mapper = mapper;
         }
 
         [HttpGet("all")]
@@ -31,14 +35,16 @@ namespace PortaalBackend.API.Controllers
         [HttpPost("create")]
         public async Task<IActionResult> CreateAssignment([FromBody] CreateAssignmentInput assignment)
         {
-            Assignment createdAssignment = await assignmentService.CreateAssignmentAsync(assignment.ToAssignment());
+            Assignment converted = _mapper.Map<Assignment>(assignment);
+            Assignment createdAssignment = await assignmentService.CreateAssignmentAsync(converted);
             return Ok(createdAssignment);
         }
 
         [HttpPost("comment")]
         public async Task<IActionResult> AddComment([FromBody] AddCommentRequest request)
         {
-            Comment comment = await assignmentService.AddCommentAsync(request.ToComment());
+            Comment converted = _mapper.Map<Comment>(request);
+            Comment comment = await assignmentService.AddCommentAsync(converted);
             return Ok(comment);
         }
 
