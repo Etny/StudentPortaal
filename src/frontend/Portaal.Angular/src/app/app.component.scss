@@ -1,0 +1,33 @@
+@import './Shared/styles/mixins.scss';
+
+.content {
+    padding: 40px 0 0 40px;
+    border-top-left-radius: 16px;
+    box-shadow: rgba(0, 0, 0, 0.35) 10px 10px 15px -15px inset;
+    
+    &-col {
+        padding: 0;
+    }
+}
+
+.container-fluid {
+    @include flex(column, start, flex-start);
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+
+    .row {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
+}
+
+.content-row {
+    flex-grow: 1;
+
+    div {
+        height: 100%;
+    }
+}

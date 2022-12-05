@@ -1,0 +1,40 @@
+// I HATE how this uses relative paths, but 1 spent more than an hour trying to find a better solution, and nothing worked :( ~Ynte
+@import '../../../Shared/styles/mixins.scss';
+@import '../../../Shared/styles/variables.scss';
+
+.sidenav-button {
+    border-radius: 50%;
+    transition: .25s;
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    margin: 7px 0;
+    box-shadow: rgba(0, 0, 0, 0);
+    @include flex;
+
+    color: black;
+    background-color: $itvitae-grey;
+
+    &:hover {
+        color: white;
+        background-color: $itvitae-blue;
+        box-shadow: rgba(0, 0, 0, .15) 0px 7px 10px;
+
+    }
+
+    &.active {
+        color: $itvitae-grey;
+        background-color: $itvitae-orange;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px inset;
+
+        &:first-child {
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 5px 15px inset;
+        }
+    }
+
+    &:active {
+        color: $itvitae-grey;
+        background-color: $itvitae-orange;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px inset;
+    }
+}

@@ -1,0 +1,6 @@
+<span 
+    (click)="clicked()" 
+    [ngClass]="['sidenav-button', router.url === route ? 'active' : '']"
+    [matTooltip]="label" matTooltipPosition="right">
+    <ng-content></ng-content>
+</span>
