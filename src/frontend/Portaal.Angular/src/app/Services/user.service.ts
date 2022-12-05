@@ -8,11 +8,15 @@ import { User } from '../Models/user';
 })
 export class UserService {
 
+  auth_token: string = "";
+
   constructor(private httpClient: HttpClient) { }
 
   login(emailAddress: string, password: string) {
     console.log(emailAddress, password);
-    return this.httpClient.post(`${environment.apiUrl}/User/login`, { emailAddress, password }).subscribe();
+    return this.httpClient.post<string>(`${environment.apiUrl}/User/login`, { emailAddress, password }).subscribe(
+      r => this.auth_token = r
+    );
   }
 
 
