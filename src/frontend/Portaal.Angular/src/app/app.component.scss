@@ -1,10 +1,12 @@
+@import './Shared/styles/variables.scss';
 @import './Shared/styles/mixins.scss';
 
 .content {
-    padding: 40px 0 0 40px;
+    padding: 40px;
     border-top-left-radius: 16px;
     box-shadow: rgba(0, 0, 0, 0.35) 10px 10px 15px -15px inset;
-    
+    background-color: $itvitae-grey;
+
     &-col {
         padding: 0;
     }
@@ -22,6 +24,10 @@
         padding: 0;
         width: 100%;
     }
+}
+
+.no-pad {
+    padding: 0;
 }
 
 .content-row {

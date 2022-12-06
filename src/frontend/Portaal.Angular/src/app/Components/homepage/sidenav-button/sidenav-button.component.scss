@@ -13,7 +13,7 @@
     @include flex;
 
     color: black;
-    background-color: $itvitae-grey;
+    background-color: transparent;
 
     &:hover {
         color: white;
@@ -33,7 +33,7 @@
     }
 
     &:active {
-        color: $itvitae-grey;
+        color: white;
         background-color: $itvitae-orange;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px inset;
     }

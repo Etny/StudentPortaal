@@ -1,6 +1,9 @@
 @import '../../../Shared/styles/mixins.scss';
+@import '../../../Shared/styles/variables.scss';
 
 .sidenav {
-    // padding: 50px 20px;
-    @include flex($direction: column); 
+    padding: 0px 10px;
+    @include flex($direction: column, $justify: flex-start); 
+    height: 100%;
+    background-color: $itvitae-dark-blue;
 }
