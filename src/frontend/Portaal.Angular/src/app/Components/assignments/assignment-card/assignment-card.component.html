@@ -1,9 +1,12 @@
-<mat-card>
-    <mat-card-title>
-        {{assignment.title}}
-    </mat-card-title>
+<mat-card (click)="onClick()">
+    <mat-card-header>
+        <mat-card-title>{{assignment.title}}</mat-card-title>
+        <mat-card-subtitle>Created {{createdString()}}</mat-card-subtitle>
+    </mat-card-header>
     <mat-divider></mat-divider>
     <mat-card-content>
-        {{assignment.description}}
+        <p>
+            {{assignment.description}}
+        </p>
     </mat-card-content>
 </mat-card>

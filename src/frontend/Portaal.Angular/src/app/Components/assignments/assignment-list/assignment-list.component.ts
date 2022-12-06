@@ -11,7 +11,7 @@ import { AssignmentService } from 'src/app/Services/assignment.service';
 })
 export class AssignmentListComponent {
 
-  assignments$!: Observable<Assignment[]>
+  assignments: Assignment[] = [];
   search: string = '';
   searchVal!: FormControl;
 
@@ -22,7 +22,7 @@ export class AssignmentListComponent {
   }
 
   setPhones(): void {
-    this.assignments$ = this.assignmentService.getAll(this.searchVal.value);
+    this.assignmentService.getAll(this.searchVal.value).subscribe(a => this.assignments = a);
   }
 
 }

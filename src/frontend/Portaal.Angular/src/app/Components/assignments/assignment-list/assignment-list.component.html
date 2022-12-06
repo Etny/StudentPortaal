@@ -3,8 +3,10 @@
     <input matInput placeholder="title here" [formControl]="searchVal">
 </mat-form-field>
 
-<div *ngIf="assignments$ | async as assignments" class="assignment-container">
-    <div *ngFor="let assignment of assignments" class="assignment-container-item">
-        <app-assignment-card  [assignment]="assignment"></app-assignment-card>
-    </div>
+<div class="container-fluid">
+        <div *ngIf="assignments" class="assignment-container row gy-3">
+            <div *ngFor="let assignment of assignments" class="col-3 assignment-container-item">
+                <app-assignment-card  [assignment]="assignment"></app-assignment-card>
+            </div>
+        </div>
 </div>

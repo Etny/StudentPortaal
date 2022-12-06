@@ -1,9 +1,25 @@
+@import '../../../Shared/styles/variables.scss';
+
 mat-card {
 
-    &-title, &-content {
-        color: white;
+    height: 10rem;
+
+    &-subtitle {
+        font-size: smaller;
     }
 
-    padding: 1rem;
-    text-align: center;
+    transition: background-color .35s ease;
+    background-color: white;
+
+    &:hover {
+        background-color: $itvitae-blue;
+        cursor: pointer;
+    }
+}
+
+mat-divider {
+    padding-bottom: 10px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
