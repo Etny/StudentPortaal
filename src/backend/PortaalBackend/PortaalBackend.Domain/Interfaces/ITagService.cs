@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PortaalBackend.Domain.Models;
 
 namespace PortaalBackend.Domain.Interfaces
 {
     public interface ITagService
     {
+        public Task<Tag> CreateTagAsync(Tag tag);
+        public Tag? GetById(int assignmentId);
+        public List<Tag> GetAll();
+        public Task DeleteById(int id);
     }
 }
