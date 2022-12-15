@@ -4,9 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using PortaalBackend.Infrastructure.Configuration;
 using PortaalBackend.Domain.Models;
 using PortaalBackend.Domain.Models.Joins;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PortaalBackend.Infrastructure
 {
+    [ExcludeFromCodeCoverage]
     public class DataContext : IdentityDbContext<IdentityUser, IdentityRole, string>
     {
         public DbSet<Assignment> Assignment { get; set; }

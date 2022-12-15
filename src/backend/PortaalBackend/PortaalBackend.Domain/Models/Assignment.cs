@@ -1,8 +1,10 @@
 ﻿using PortaalBackend.Domain.Interfaces;
 using PortaalBackend.Domain.Models.Joins;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PortaalBackend.Domain.Models
 {
+    [ExcludeFromCodeCoverage]
     public record Assignment : IEntity
     {
         public int Id { get; set; }

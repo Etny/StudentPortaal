@@ -1,7 +1,10 @@
 
 
+using System.Diagnostics.CodeAnalysis;
+
 namespace PortaalBackend.Domain.Models.Joins 
 {
+    [ExcludeFromCodeCoverage]
     //I am using this to create a many-to-many relationship ~Ynte
     public record AssignmentTag 
     {

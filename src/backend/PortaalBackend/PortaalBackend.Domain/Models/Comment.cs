@@ -1,10 +1,11 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json.Serialization;
 using PortaalBackend.Domain.Interfaces;
 using PortaalBackend.Domain.Models.Joins;
 
 namespace PortaalBackend.Domain.Models
 {
-
+    [ExcludeFromCodeCoverage]
     public record Comment : IEntity
     {
         public int Id { get; set; }

@@ -3,9 +3,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PortaalBackend.Domain.Models.Joins;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PortaalBackend.Infrastructure.Configuration
 {
+    [ExcludeFromCodeCoverage]
     public class AssignmentTagConfiguration : IEntityTypeConfiguration<AssignmentTag>
     {
         public void Configure(EntityTypeBuilder<AssignmentTag> builder)

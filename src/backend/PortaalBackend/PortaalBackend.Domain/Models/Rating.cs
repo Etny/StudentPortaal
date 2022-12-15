@@ -1,7 +1,9 @@
 ﻿using PortaalBackend.Domain.Interfaces;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PortaalBackend.Domain.Models
 {
+    [ExcludeFromCodeCoverage]
     public record Rating : IEntity
     {
         public int Id { get; set; }

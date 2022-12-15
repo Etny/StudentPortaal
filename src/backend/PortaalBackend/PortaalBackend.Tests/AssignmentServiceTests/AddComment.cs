@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 
 namespace PortaalBackend.Tests.AssignmentServiceTests
 {
+    [ExcludeFromCodeCoverage]
     public class AddCommentTests
     {
 

@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PortaalBackend.Domain.Models
 {
+    [ExcludeFromCodeCoverage]
     [Owned]
     public record Ratings
     {

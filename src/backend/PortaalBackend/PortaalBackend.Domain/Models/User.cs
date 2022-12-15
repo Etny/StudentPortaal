@@ -1,8 +1,10 @@
 ﻿using PortaalBackend.Domain.Interfaces;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PortaalBackend.Domain.Models
 {
+    [ExcludeFromCodeCoverage]
     public record User : IEntity
     {
         public int Id { get; set; }
