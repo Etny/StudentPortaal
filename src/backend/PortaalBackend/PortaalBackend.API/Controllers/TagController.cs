@@ -16,7 +16,7 @@ namespace PortaalBackend.API.Controllers
         }
 
         [HttpGet("all")]
-        public IActionResult GetAll(string searchQuery = "")
+        public IActionResult GetAll(string? searchQuery = "")
         {
             List<Tag> tags = string.IsNullOrEmpty(searchQuery) ? 
                 tagService.GetAll() : 
@@ -25,8 +25,9 @@ namespace PortaalBackend.API.Controllers
             return Ok(tags);
         }
 
+        // [Authorize(Roles = "Teacher, Admin")]
         [HttpPost("create")]
-        public async Task<IActionResult> CreateAssignment([FromBody] string tagName)
+        public async Task<IActionResult> CreateTag([FromBody] string tagName)
         {
             Tag newTag = new() { Name = tagName };
             Tag createdTag = await tagService.CreateTagAsync(newTag);
@@ -42,6 +43,7 @@ namespace PortaalBackend.API.Controllers
             return tag == null ? NotFound() : Ok(tag);
         }
 
+        // [Authorize(Roles = "Teacher, Admin")]
         [HttpDelete("delete/{id}")]
         public async Task<IActionResult> DeleteById(int id)
         {

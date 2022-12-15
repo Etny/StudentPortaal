@@ -32,6 +32,7 @@ namespace PortaalBackend.API
             builder.Services.AddScoped<ITokenService, TokenService>();
             builder.Services.AddScoped<IAssignmentService, AssignmentService>();
             builder.Services.AddScoped<IUserService, UserService>();
+            builder.Services.AddScoped<ITagService, TagService>();
 
             builder.Services.AddSingleton(new TypeAdapterConfig());
             builder.Services.AddScoped<IMapper, ServiceMapper>();
