@@ -9,5 +9,6 @@ namespace PortaalBackend.Domain.Interfaces
         public T Update(T entity);
         public Task<T> CreateAsync(T entity);
         public Task SaveChangesAsync();
+        public void DeleteById(int id);
     }
 }

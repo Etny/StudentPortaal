@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Internal;
 using PortaalBackend.Domain.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
@@ -37,15 +38,20 @@ namespace PortaalBackend.Infrastructure
             return set.SingleOrDefault(e => e.Id == id);
         }
 
-        public async Task SaveChangesAsync()
+        public void DeleteById(int id)
         {
-            await dataContext.SaveChangesAsync();
+            dataContext.Remove(id);
         }
 
         public T Update(T entity)
         {
             EntityEntry<T> entityEntry = dataContext.Update(entity);
             return entityEntry.Entity;
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await dataContext.SaveChangesAsync();
         }
     }
 }
