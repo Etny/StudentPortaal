@@ -15,9 +15,13 @@ import { CreateStudentComponent } from './Components/create-student/create-stude
 import { AssignmentDetailsComponent } from './Components/assignment-details/assignment-details.component'
 import { AssignmentCardComponent } from './Components/assignments/assignment-card/assignment-card.component';
 import { AssignmentListComponent } from './Components/assignments/assignment-list/assignment-list.component';
+import { TagListComponent } from './Components/Tags/tag-list/tag-list.component';
+import { TagDetailsComponent } from './Components/Tags/tag-details/tag-details.component';
+import { CreateTagComponent } from './Components/Tags/create-tag/create-tag.component';
+import { TagCardComponent } from './Components/Tags/tag-card/tag-card.component';
 
 @NgModule({
-    declarations: [AppComponent, CreateAssignmentComponent, AssignmentDetailsComponent, LoginComponent, CreateStudentComponent, AssignmentCardComponent, AssignmentListComponent],
+    declarations: [AppComponent, CreateAssignmentComponent, AssignmentDetailsComponent, LoginComponent, CreateStudentComponent, AssignmentCardComponent, AssignmentListComponent, TagListComponent, TagDetailsComponent, CreateTagComponent, TagCardComponent],
   imports: [
     HttpClientModule,
     ReactiveFormsModule,

@@ -1,0 +1,10 @@
+<mat-form-field appearance="fill">
+    <mat-label>Search</mat-label>
+    <input matInput placeholder="title here" [formControl]="searchVal">
+</mat-form-field>
+
+<div *ngIf="tags$ | async as tags" class="tag-container">
+    <div *ngFor="let tag of tags" class="tag-container-item">
+        <tag-card  [tag]="tag"></tag-card>
+    </div>
+</div>

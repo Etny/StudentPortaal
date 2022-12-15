@@ -5,6 +5,9 @@ import { AssignmentListComponent } from './Components/assignments/assignment-lis
 import { CreateAssignmentComponent } from './Components/create-assignment/create-assignment.component';
 import { CreateStudentComponent } from './Components/create-student/create-student.component';
 import { LoginComponent } from './Components/login/login.component';
+import { CreateTagComponent } from './Components/Tags/create-tag/create-tag.component';
+import { TagDetailsComponent } from './Components/Tags/tag-details/tag-details.component';
+import { TagListComponent } from './Components/Tags/tag-list/tag-list.component';
 
 const routes: Routes = [
 
@@ -27,6 +30,18 @@ const routes: Routes = [
   {
     path: "assignment-overview",
     component: AssignmentListComponent
+  },
+  {
+    path: "create-tag",
+    component: CreateTagComponent
+  },
+  {
+    path: "tag/:id",
+    component: TagDetailsComponent
+  },
+  {
+    path: "tag-overview",
+    component: TagListComponent
   }
 ];
 

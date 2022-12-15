@@ -1,0 +1,9 @@
+<div class="example-container">
+    <mat-form-field appearance="fill">
+        <mat-label>Enter a tag name</mat-label>
+        <input matInput placeholder="tag name" [formControl]="tagName" required>
+        <mat-error *ngIf="tagName.invalid">Invalid Input</mat-error>
+    </mat-form-field>
+
+    <button [disabled]="tagName.invalid" (click)="createTag()">Create Tag</button>
+</div>
